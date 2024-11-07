@@ -1,18 +1,27 @@
-name: GitHub Actions Demo
+name: GitHub Actions yaml file
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+
 on: [push]
+
+env:
+  server_key: ${{ secrets.SERVER_KEY }}
+
 jobs:
-  Explore-GitHub-Actions:
+  Salesforce-deployment-pipeline:
     runs-on: ubuntu-latest
+
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Clean Workspace
+        run: deleteDir()
+
+      - name: Save secret to file
+        run: echo $server_key > server_key.key
+        env:
+          server_key: ${{ secrets.SERVER_KEY }}
+
       - name: Check out repository code
         uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
+
+      - name: Authorize to Salesforce
         run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+          sfdx auth:jwt:grant --instanceurl https://login.salesforce.com --clientid 3MVG9pRzvMkjMb6kNn45Qi9K2FN4uyLWhbBgDIWiwInPWa7Kc4S..45KzzLpdXWUYcSM5ySmgQltBvqB3_75p --jwtkeyfile server.key --username pratimamaiti@nagarro.com --setalias PMait
