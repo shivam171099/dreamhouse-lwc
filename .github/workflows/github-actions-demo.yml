@@ -21,4 +21,4 @@ jobs:
 
       - name: Authorize to Salesforce
         run: |
-          sfdx auth:jwt:grant --instanceurl https://login.salesforce.com --clientid 3MVG9pRzvMkjMb6kNn45Qi9K2FN4uyLWhbBgDIWiwInPWa7Kc4S..45KzzLpdXWUYcSM5ySmgQltBvqB3_75p --jwtkeyfile server.key --username pratimamaiti@nagarro.com --setalias PMait
+          sf org login jwt --client-id 3MVG9pRzvMkjMb6kNn45Qi9K2FN4uyLWhbBgDIWiwInPWa7Kc4S..45KzzLpdXWUYcSM5ySmgQltBvqB3_75p --jwt-key-file server_key --username pratimamaiti@nagarro.com --alias PMait
