@@ -11,9 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clean Workspace
-        run: deleteDir()
-
       - name: Save secret to file
         run: echo $server_key > server_key.key
         env:
