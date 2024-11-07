@@ -15,7 +15,7 @@ jobs:
         run: npm install --global @salesforce/cli
 
       - name: Save secret to file
-        run: echo $server_key > server_key.key
+        run: echo "$server_key" > $GITHUB_WORKSPACE/server_key.key
         env:
           server_key: ${{ secrets.SERVER_KEY }}
 
@@ -24,4 +24,4 @@ jobs:
 
       - name: Authorize to Salesforce
         run: |
-          sf org login jwt --client-id 3MVG9pRzvMkjMb6kNn45Qi9K2FN4uyLWhbBgDIWiwInPWa7Kc4S..45KzzLpdXWUYcSM5ySmgQltBvqB3_75p --jwt-key-file /home/runner/work/dreamhouse-lwc/dreamhouse-lwc/server_key.key --username pratimamaiti@nagarro.com --alias PMait
+          sf org login jwt --client-id 3MVG9pRzvMkjMb6kNn45Qi9K2FN4uyLWhbBgDIWiwInPWa7Kc4S..45KzzLpdXWUYcSM5ySmgQltBvqB3_75p --jwt-key-file $GITHUB_WORKSPACE/server_key.key --username pratimamaiti@nagarro.com --alias PMait
