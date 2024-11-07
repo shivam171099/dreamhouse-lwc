@@ -17,6 +17,9 @@ jobs:
         run: echo "$server_key" > $GITHUB_WORKSPACE/server_key.key
         env:
           server_key: ${{ secrets.SERVER_KEY }}
+      - name: Verify server_key file exists
+        run: |
+          ls -l $GITHUB_WORKSPACE
 
       - name: Check out repository code
         uses: actions/checkout@v4
