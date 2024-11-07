@@ -9,7 +9,6 @@ env:
 jobs:
   Salesforce-deployment-pipeline:
     runs-on: ubuntu-latest
-
     steps:
       - name: Install Salesforce CLI plugin
         run: npm install --global @salesforce/cli
