@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install Salesforce CLI plugin
+        run: npm install --global @salesforce/cli
+
       - name: Save secret to file
         run: echo $server_key > server_key.key
         env:
