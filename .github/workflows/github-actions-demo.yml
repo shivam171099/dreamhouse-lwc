@@ -14,16 +14,16 @@ jobs:
         run: npm install --global @salesforce/cli
 
       - name: Save secret to file
-        run: echo "$server_key" > /home/runner/work/dreamhouse-lwc/dreamhouse-lwc/server_key.key 
+        run: echo "${{ secrets.SERVER_KEY }}" > $GITHUB_WORKSPACE/server.key 
         env:
           server_key: ${{ secrets.SERVER_KEY }}
       - name: Verify server_key file exists
         run: |
-          ls -l $GITHUB_WORKSPACE
+          ls -l $GITHUB_WORKSPACE # List files to check if server.key exists
 
       - name: Check out repository code
         uses: actions/checkout@v4
 
       - name: Authorize to Salesforce
         run: |
-          sf org login jwt --client-id 3MVG9pRzvMkjMb6kNn45Qi9K2FN4uyLWhbBgDIWiwInPWa7Kc4S..45KzzLpdXWUYcSM5ySmgQltBvqB3_75p --jwt-key-file $server_key --username pratimamaiti@nagarro.com --alias PMait
+          sf org login jwt --client-id 3MVG9pRzvMkjMb6kNn45Qi9K2FN4uyLWhbBgDIWiwInPWa7Kc4S..45KzzLpdXWUYcSM5ySmgQltBvqB3_75p --jwt-key-file $GITHUB_WORKSPACE/server.key --username pratimamaiti@nagarro.com --alias PMait
