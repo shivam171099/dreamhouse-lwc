@@ -14,7 +14,7 @@ jobs:
         run: npm install --global @salesforce/cli
 
       - name: Save secret to file
-        run: echo "$server_key" > ${{GITHUB_WORKSPACE}}/server_key.key
+        run: echo "$server_key" > ${{GITHUB_WORKSPACE}}/server_key.key 
         env:
           server_key: ${{ secrets.SERVER_KEY }}
       - name: Verify server_key file exists
