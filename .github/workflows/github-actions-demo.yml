@@ -13,8 +13,8 @@ jobs:
       - name: Install Salesforce CLI plugin
         run: npm install --global @salesforce/cli
 
-      - name: Save secret to file
-        run: echo "${{ secrets.SERVER_KEY }}" > $GITHUB_WORKSPACE/server.key 
+      - name: Create server.key file
+        run: echo "${{ secrets.SERVER_KEY }}" > /home/runner/work/dreamhouse-lwc/dreamhouse-lwc/server.key 
         env:
           server_key: ${{ secrets.SERVER_KEY }}
       - name: Verify server_key file exists
