@@ -22,6 +22,7 @@ public with sharing class PropertyController {
         Integer pageNumber
     ) {
         // Normalize inputs
+        // Normalize inputs
         Decimal safeMaxPrice = maxPrice ?? DEFAULT_MAX_PRICE;
         Integer safeMinBedrooms = minBedrooms ?? 0;
         Integer safeMinBathrooms = minBathrooms ?? 0;
